@@ -101,7 +101,7 @@ const Clockin = ({ history }) => {
                 <Box style={{ width: "50%" }}>
                   <Button
                     type="submit"
-                    colorScheme="red"
+                    colorScheme="blue"
                     value="Next"
                     isFullWidth
                   >

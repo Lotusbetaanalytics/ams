@@ -18,14 +18,17 @@ export const registration =
       type: USER_REGISTER_REQUEST,
     });
     try {
-      const { data } = await Axios.post("/api/Attendance/register", {
-        firstName,
-        lastName,
-        identity,
-        email,
-        media1,
-        media2,
-      });
+      const { data } = await Axios.post(
+        "https://vmsapi.lotusbetaanalytics.com/api/Attendance/register",
+        {
+          firstName,
+          lastName,
+          identity,
+          email,
+          media1,
+          media2,
+        }
+      );
       dispatch({
         type: USER_REGISTER_SUCCESS,
         payload: data,
@@ -47,12 +50,15 @@ export const clockin =
       type: USER_CLOCKIN_REQUEST,
     });
     try {
-      const { data } = await Axios.post("/api/Attendance/clockin", {
-        identity,
-        latitude,
-        media1,
-        longitude,
-      });
+      const { data } = await Axios.post(
+        "https://vmsapi.lotusbetaanalytics.com/api/Attendance/clockin",
+        {
+          identity,
+          latitude,
+          media1,
+          longitude,
+        }
+      );
       dispatch({
         type: USER_CLOCKIN_SUCCESS,
         payload: data,
@@ -73,9 +79,12 @@ export const clockout = (identity) => async (dispatch) => {
     type: USER_CLOCKOUT_REQUEST,
   });
   try {
-    const { data } = await Axios.post("/api/Attendance/clockout", {
-      identity,
-    });
+    const { data } = await Axios.post(
+      "https://vmsapi.lotusbetaanalytics.com/api/Attendance/clockout",
+      {
+        identity,
+      }
+    );
     dispatch({
       type: USER_CLOCKOUT_SUCCESS,
       payload: data,

@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import CaptureScreen from "./screens/Capture";
+import Clockin from "./screens/Clockin";
+import ClockinError from "./screens/ClockinError";
+import ClockinSuccess from "./screens/ClockinSuccess";
+import ClockOut from "./screens/ClockOut";
+import ClockoutSuccess from "./screens/ClockoutSuccess";
+import Enrollment from "./screens/Enrollment";
+import Home from "./screens/Home";
+import VerifyScreen from "./screens/VerifyCapture";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/enrol" exact component={Enrollment} />
+        <Route path="/capture" exact component={CaptureScreen} />
+        <Route path="/verify" exact component={VerifyScreen} />
+        <Route path="/success" exact component={ClockinSuccess} />
+        <Route path="/error" exact component={ClockinError} />
+        <Route path="/clockin" exact component={Clockin} />
+        <Route path="/clockout" exact component={ClockOut} />
+        <Route path="/clockoutsuccess" exact component={ClockoutSuccess} />
+      </Switch>
+    </Router>
   );
 }
 

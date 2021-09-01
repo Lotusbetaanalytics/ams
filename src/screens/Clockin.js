@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { clockin } from "../redux/actions/userActions";
 
 const Clockin = ({ history }) => {
-  const [email, setEmail] = useState("");
+  const [identity, setIdentity] = useState("");
   const [status, setStatus] = useState("");
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
@@ -40,7 +40,7 @@ const Clockin = ({ history }) => {
     if (!latitude && !longitude) {
       setStatus("Geolocation is not supported by your browser");
     } else {
-      dispatch(clockin(email, latitude, media1, longitude));
+      dispatch(clockin(identity, latitude, media1, longitude));
     }
   };
 
@@ -132,9 +132,9 @@ const Clockin = ({ history }) => {
                     <Input
                       type="email"
                       className="form-control"
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => setIdentity(e.target.value)}
                       placeholder="Email Address"
-                      value={email}
+                      value={identity}
                     />
                   </div>
                   <div className={styles.formContainer}>

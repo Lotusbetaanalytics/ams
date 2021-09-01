@@ -13,12 +13,12 @@ import { clockout } from "../redux/actions/userActions";
 import { useSelector, useDispatch } from "react-redux";
 
 const ClockOut = ({ history }) => {
-  const [email, setEmail] = useState("");
+  const [identity, setIdentity] = useState("");
 
   const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(clockout(email));
+    dispatch(clockout(identity));
   };
   const userClockout = useSelector((state) => state.userClockout);
   const { loading, error, success } = userClockout;
@@ -48,9 +48,9 @@ const ClockOut = ({ history }) => {
                 <Input
                   type="email"
                   className="form-control"
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => setIdentity(e.target.value)}
                   placeholder="Email Address"
-                  value={email}
+                  value={identity}
                 />
               </div>
               <div className={styles.formContainer}>

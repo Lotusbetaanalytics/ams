@@ -43,7 +43,7 @@ export const registration =
   };
 
 export const clockin =
-  (email, latitude, media1, longitude) => async (dispatch) => {
+  (identity, latitude, media1, longitude) => async (dispatch) => {
     dispatch({
       type: USER_CLOCKIN_REQUEST,
     });
@@ -51,7 +51,7 @@ export const clockin =
       const { data } = await Axios.post(
         "https://vmsapi.lotusbetaanalytics.com/api/Attendance/clockin",
         {
-          email,
+          identity,
           latitude,
           media1,
           longitude,
@@ -72,7 +72,7 @@ export const clockin =
     }
   };
 
-export const clockout = (email) => async (dispatch) => {
+export const clockout = (identity) => async (dispatch) => {
   dispatch({
     type: USER_CLOCKOUT_REQUEST,
   });
@@ -80,7 +80,7 @@ export const clockout = (email) => async (dispatch) => {
     const { data } = await Axios.post(
       "https://vmsapi.lotusbetaanalytics.com/api/Attendance/clockout",
       {
-        email,
+        identity,
       }
     );
     dispatch({

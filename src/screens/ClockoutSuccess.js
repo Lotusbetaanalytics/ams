@@ -32,7 +32,7 @@ const ClockoutSuccess = ({ history }) => {
               </h4>
             </Center>
 
-            <div className={styles.circle}>
+            <div className={`${styles.circle} ${styles.green}`}>
               <Center>
                 <FiCheckCircle />
               </Center>

@@ -15,7 +15,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/enrol" exact component={Enrollment} />
+        <Route path="/enroll" exact component={Enrollment} />
         <Route path="/capture" exact component={CaptureScreen} />
         <Route path="/verify" exact component={VerifyScreen} />
         <Route path="/success" exact component={ClockinSuccess} />

@@ -1,7 +1,7 @@
 import React from "react";
 import ParticlesComponent from "../components/ParticlesComponent";
 import styles from "./styles.module.css";
-import { FaWalking } from "react-icons/fa";
+import { FaSpinner, FaWalking, FaSignOutAlt } from "react-icons/fa";
 import { Center } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
@@ -27,14 +27,34 @@ const Home = () => {
               <b>{date}</b>
             </h4>
           </Center>
-          <Link to="/clockin">
-            <div className={styles.circle}>
-              <Center>
-                <FaWalking />
-              </Center>
-              <h3>Clockin</h3>
-            </div>
-          </Link>
+          <div className={styles.circleGrid}>
+            <Link to="/enroll">
+              <div className={`${styles.circle} ${styles.green}`}>
+                <Center>
+                  <FaSpinner />
+                </Center>
+                <h3>Enrollment</h3>
+              </div>
+            </Link>
+
+            <Link to="/clockin">
+              <div className={`${styles.circle} ${styles.blue}`}>
+                <Center>
+                  <FaWalking />
+                </Center>
+                <h3>Clockin</h3>
+              </div>
+            </Link>
+
+            <Link to="/clockout">
+              <div className={`${styles.circle} ${styles.red}`}>
+                <Center>
+                  <FaSignOutAlt />
+                </Center>
+                <h3>Clockout</h3>
+              </div>
+            </Link>
+          </div>
         </div>
 
         <br />
@@ -46,14 +66,6 @@ const Home = () => {
             <h5>&copy; Lotus Beta Analytics</h5>
           </Center>
         </div>
-      </div>
-      <div className={styles.tab}>
-        <Link to="/enrol">
-          <div className={styles.square}>Enrol</div>
-        </Link>
-        <Link to="/clockout">
-          <div className={styles.square}>Clockout</div>
-        </Link>
       </div>
     </>
   );

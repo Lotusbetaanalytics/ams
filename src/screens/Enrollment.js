@@ -8,14 +8,12 @@ const Enrollment = ({ history }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [identity, setIdentity] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
     localStorage.setItem("firstName", firstName);
     localStorage.setItem("lastName", lastName);
     localStorage.setItem("email", email);
-    localStorage.setItem("identity", identity);
     history.push("/capture");
   };
 
@@ -24,6 +22,11 @@ const Enrollment = ({ history }) => {
       <div className={styles.app}>
         <Header styles={styles} />
         <div className={styles.form}>
+          <div className={styles.formContainer}>
+            <Link to="/">
+              <Button colorScheme="teal">Go Back</Button>
+            </Link>
+          </div>
           <form onSubmit={submitHandler}>
             <div className={styles.formContainer}>
               <Input
@@ -53,20 +56,10 @@ const Enrollment = ({ history }) => {
               />
             </div>
             <div className={styles.formContainer}>
-              <Input
-                type="password"
-                className="form-control"
-                onChange={(e) => setIdentity(e.target.value)}
-                placeholder="Pin"
-                style={{ padding: "2rem" }}
-                maxLength={4}
-              />
-            </div>
-            <div className={styles.formContainer}>
               <div className={`col-md-12`}>
                 <Button
                   type="submit"
-                  colorScheme="blue"
+                  colorScheme="teal"
                   value="Next"
                   isFullWidth
                   style={{ padding: "2rem" }}
@@ -77,14 +70,6 @@ const Enrollment = ({ history }) => {
             </div>
           </form>
         </div>
-      </div>
-      <div className={styles.tab}>
-        <Link to="/">
-          <div className={styles.square}>Home</div>
-        </Link>
-        <Link to="/clockout">
-          <div className={styles.square}>Clockout</div>
-        </Link>
       </div>
     </>
   );

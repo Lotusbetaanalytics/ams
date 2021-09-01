@@ -13,12 +13,12 @@ import { clockout } from "../redux/actions/userActions";
 import { useSelector, useDispatch } from "react-redux";
 
 const ClockOut = ({ history }) => {
-  const [identity, setIdentity] = useState("");
+  const [email, setEmail] = useState("");
 
   const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(clockout(identity));
+    dispatch(clockout(email));
   };
   const userClockout = useSelector((state) => state.userClockout);
   const { loading, error, success } = userClockout;
@@ -37,20 +37,30 @@ const ClockOut = ({ history }) => {
           </Center>
         ) : (
           <div className={styles.form}>
+            <div className={styles.formContainer}>
+              <Link to="/">
+                <Button colorScheme="teal">Go Back</Button>
+              </Link>
+            </div>
             {error && <Alert colorScheme="red">{error}</Alert>}
             <form onSubmit={submitHandler}>
               <div className={styles.formContainer}>
                 <Input
-                  type="password"
+                  type="email"
                   className="form-control"
-                  onChange={(e) => setIdentity(e.target.value)}
-                  placeholder="Pin"
-                  value={identity}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email Address"
+                  value={email}
                 />
               </div>
               <div className={styles.formContainer}>
                 <div className="col-md-3 float-end">
-                  <Button type="submit" colorScheme="blue" value="Next">
+                  <Button
+                    type="submit"
+                    colorScheme="teal"
+                    value="Next"
+                    isFullWidth
+                  >
                     ClockOut
                   </Button>
                 </div>
@@ -58,14 +68,6 @@ const ClockOut = ({ history }) => {
             </form>
           </div>
         )}
-      </div>
-      <div className={styles.tab}>
-        <Link to="/enrol">
-          <div className={styles.square}>Enrol</div>
-        </Link>
-        <Link to="/clockin">
-          <div className={styles.square}>Clockin</div>
-        </Link>
       </div>
     </>
   );

@@ -5,7 +5,15 @@ import Webcam from "react-webcam";
 import { useDispatch, useSelector } from "react-redux";
 import { registration } from "../redux/actions/userActions";
 import Header from "../components/Header";
-import { Button, Center, Box, useToast } from "@chakra-ui/react";
+import {
+  Button,
+  Center,
+  Box,
+  useToast,
+  AlertIcon,
+  Alert,
+  Divider,
+} from "@chakra-ui/react";
 
 const VerifyScreen = ({ history }) => {
   const toast = useToast();
@@ -27,14 +35,11 @@ const VerifyScreen = ({ history }) => {
     const firstName = localStorage.getItem("firstName");
     const lastName = localStorage.getItem("lastName");
     const email = localStorage.getItem("email");
-    const identity = localStorage.getItem("identity");
     const media1 = localStorage.getItem("media1");
     localStorage.setItem("media2", imageSrc);
     const media = localStorage.getItem("media2");
     const media2 = media.substring(23);
-    dispatch(
-      registration(firstName, lastName, identity, email, media1, media2)
-    );
+    dispatch(registration(firstName, lastName, email, media1, media2));
   }, [webcamRef, dispatch]);
   if (success) {
     history.push("/success");
@@ -52,6 +57,11 @@ const VerifyScreen = ({ history }) => {
       <div className={styles.app}>
         <Header styles={styles} />
         <div className={styles.form}>
+          <div className={`${styles.formContainer}`}>
+            <Link to="/capture">
+              <Button colorScheme="teal">Go Back</Button>
+            </Link>
+          </div>
           {loading ? (
             <div></div>
           ) : (
@@ -61,6 +71,21 @@ const VerifyScreen = ({ history }) => {
                   <Center>
                     <h3>Take another Picture</h3>
                   </Center>
+                  <Center>
+                    <Alert status="warning">
+                      <AlertIcon />
+                      Make sure your face is visible
+                    </Alert>
+                    <Alert status="info">
+                      <AlertIcon />
+                      Take off your Face Mask
+                    </Alert>
+                    <Alert status="error">
+                      <AlertIcon />
+                      Do not take Picture in a dark place
+                    </Alert>
+                  </Center>
+                  <Divider />
 
                   <Center>
                     <Webcam
@@ -77,7 +102,7 @@ const VerifyScreen = ({ history }) => {
                   <Box style={{ width: "50%" }}>
                     <Button
                       type="submit"
-                      colorScheme="blue"
+                      colorScheme="teal"
                       value="Next"
                       isFullWidth
                     >

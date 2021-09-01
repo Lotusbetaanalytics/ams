@@ -12,8 +12,7 @@ import {
 } from "../constants/userConstants";
 
 export const registration =
-  (firstName, lastName, identity, email, media1, media2) =>
-  async (dispatch) => {
+  (firstName, lastName, email, media1, media2) => async (dispatch) => {
     dispatch({
       type: USER_REGISTER_REQUEST,
     });
@@ -23,7 +22,6 @@ export const registration =
         {
           firstName,
           lastName,
-          identity,
           email,
           media1,
           media2,
@@ -45,7 +43,7 @@ export const registration =
   };
 
 export const clockin =
-  (identity, latitude, media1, longitude) => async (dispatch) => {
+  (email, latitude, media1, longitude) => async (dispatch) => {
     dispatch({
       type: USER_CLOCKIN_REQUEST,
     });
@@ -53,7 +51,7 @@ export const clockin =
       const { data } = await Axios.post(
         "https://vmsapi.lotusbetaanalytics.com/api/Attendance/clockin",
         {
-          identity,
+          email,
           latitude,
           media1,
           longitude,
@@ -74,7 +72,7 @@ export const clockin =
     }
   };
 
-export const clockout = (identity) => async (dispatch) => {
+export const clockout = (email) => async (dispatch) => {
   dispatch({
     type: USER_CLOCKOUT_REQUEST,
   });
@@ -82,7 +80,7 @@ export const clockout = (identity) => async (dispatch) => {
     const { data } = await Axios.post(
       "https://vmsapi.lotusbetaanalytics.com/api/Attendance/clockout",
       {
-        identity,
+        email,
       }
     );
     dispatch({

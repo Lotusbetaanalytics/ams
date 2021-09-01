@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { clockin } from "../redux/actions/userActions";
 
 const Clockin = ({ history }) => {
-  const [identity, setIdentity] = useState("");
+  const [email, setEmail] = useState("");
   const [status, setStatus] = useState("");
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
@@ -40,7 +40,7 @@ const Clockin = ({ history }) => {
     if (!latitude && !longitude) {
       setStatus("Geolocation is not supported by your browser");
     } else {
-      dispatch(clockin(identity, latitude, media1, longitude));
+      dispatch(clockin(email, latitude, media1, longitude));
     }
   };
 
@@ -79,6 +79,11 @@ const Clockin = ({ history }) => {
         <Header styles={styles} />
         {status && <div className="alert alert-info">{status}</div>}
         <div className={styles.form}>
+          <div className={styles.formContainer}>
+            <Link to="/">
+              <Button colorScheme="teal">Go Back</Button>
+            </Link>
+          </div>
           {!pixStatus && (
             <form onSubmit={capture}>
               <div className={`${styles.formContainer}`}>
@@ -101,7 +106,7 @@ const Clockin = ({ history }) => {
                 <Box style={{ width: "50%" }}>
                   <Button
                     type="submit"
-                    colorScheme="blue"
+                    colorScheme="teal"
                     value="Next"
                     isFullWidth
                   >
@@ -125,18 +130,18 @@ const Clockin = ({ history }) => {
                 <form onSubmit={login}>
                   <div className={styles.formContainer}>
                     <Input
-                      type="password"
+                      type="email"
                       className="form-control"
-                      onChange={(e) => setIdentity(e.target.value)}
-                      placeholder="Enter your Pin"
-                      value={identity}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Email Address"
+                      value={email}
                     />
                   </div>
                   <div className={styles.formContainer}>
                     <div className={`col-md-12`}>
                       <Button
                         type="submit"
-                        colorScheme="blue"
+                        colorScheme="teal"
                         value="Next"
                         isFullWidth
                         style={{ padding: "2rem" }}
@@ -150,14 +155,6 @@ const Clockin = ({ history }) => {
             )
           )}
         </div>
-      </div>
-      <div className={styles.tab}>
-        <Link to="/enrol">
-          <div className={styles.square}>Enrol</div>
-        </Link>
-        <Link to="/clockout">
-          <div className={styles.square}>Clockout</div>
-        </Link>
       </div>
     </>
   );

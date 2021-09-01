@@ -3,7 +3,14 @@ import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
 import Webcam from "react-webcam";
 import Header from "../components/Header";
-import { Button, Center, Box } from "@chakra-ui/react";
+import {
+  Button,
+  Center,
+  Box,
+  Alert,
+  AlertIcon,
+  Divider,
+} from "@chakra-ui/react";
 
 const CaptureScreen = ({ history }) => {
   const videoConstraints = {
@@ -26,12 +33,31 @@ const CaptureScreen = ({ history }) => {
       <div className={styles.app}>
         <Header styles={styles} />
         <div className={styles.form}>
+          <div className={`${styles.formContainer}`}>
+            <Link to="/enroll">
+              <Button colorScheme="teal">Go Back</Button>
+            </Link>
+          </div>
           <form onSubmit={capture}>
             <div className={`${styles.formContainer}`}>
               <Center>
                 <h3>Take a Picture</h3>
               </Center>
-
+              <Center>
+                <Alert status="warning">
+                  <AlertIcon />
+                  Make sure your face is visible
+                </Alert>
+                <Alert status="info">
+                  <AlertIcon />
+                  Take off your Face Mask
+                </Alert>
+                <Alert status="error">
+                  <AlertIcon />
+                  Do not take Picture in a dark place
+                </Alert>
+              </Center>
+              <Divider />
               <Center>
                 <Webcam
                   audio={false}
@@ -47,7 +73,7 @@ const CaptureScreen = ({ history }) => {
               <Box style={{ width: "50%" }}>
                 <Button
                   type="submit"
-                  colorScheme="blue"
+                  colorScheme="teal"
                   value="Next"
                   isFullWidth
                 >
@@ -57,14 +83,6 @@ const CaptureScreen = ({ history }) => {
             </Center>
           </form>
         </div>
-      </div>
-      <div className={styles.tab}>
-        <Link to="/enrol">
-          <div className={styles.square}>Enrol</div>
-        </Link>
-        <Link to="/clockout">
-          <div className={styles.square}>Clockout</div>
-        </Link>
       </div>
     </>
   );

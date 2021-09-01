@@ -43,6 +43,12 @@ const VerifyScreen = ({ history }) => {
   }, [webcamRef, dispatch]);
   if (success) {
     history.push("/success");
+    toast({
+      title:
+        "Training takes 5-10 Mins, you can only clockin after sucessful training",
+      status: "success",
+      isClosable: true,
+    });
   }
   if (error) {
     toast({

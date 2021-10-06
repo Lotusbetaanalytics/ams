@@ -4,7 +4,10 @@ import Header from "../components/Header";
 import { Center } from "@chakra-ui/react";
 import styles from "./styles.module.css";
 import { FiX } from "react-icons/fi";
-import { USER_CLOCKIN_RESET } from "../redux/constants/userConstants";
+import {
+  USER_CLOCKIN_RESET,
+  USER_REGISTER_RESET,
+} from "../redux/constants/userConstants";
 import { useDispatch, useSelector } from "react-redux";
 
 const ClockinError = ({ history }) => {
@@ -16,6 +19,7 @@ const ClockinError = ({ history }) => {
   useEffect(() => {
     setTimeout(() => {
       dispatch({ type: USER_CLOCKIN_RESET });
+      dispatch({ type: USER_REGISTER_RESET });
       history.push("/");
     }, 5000);
   }, [history, dispatch]);

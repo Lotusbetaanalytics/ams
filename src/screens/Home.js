@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ParticlesComponent from "../components/ParticlesComponent";
 import styles from "./styles.module.css";
 import { FaSpinner, FaWalking, FaSignOutAlt } from "react-icons/fa";
 import { Center } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
+import { useDispatch } from "react-redux";
+import {
+  USER_CLOCKOUT_RESET,
+  USER_REGISTER_RESET,
+} from "../redux/constants/userConstants";
 
 const Home = () => {
   let today = new Date();
   let date = new Date().toUTCString().slice(0, 16);
   let time = today.getHours() + ":" + today.getMinutes();
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({ type: USER_CLOCKOUT_RESET });
+    dispatch({ type: USER_REGISTER_RESET });
+  }, [dispatch]);
   return (
     <>
       <ParticlesComponent />

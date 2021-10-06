@@ -18,7 +18,7 @@ export const registration =
     });
     try {
       const { data } = await Axios.post(
-        "https://vmsapi.lotusbetaanalytics.com/api/Attendance/register",
+        "https://staffattendanceapi.azurewebsites.net/api/Attendance/register",
         {
           firstName,
           lastName,
@@ -49,7 +49,7 @@ export const clockin =
     });
     try {
       const { data } = await Axios.post(
-        "https://vmsapi.lotusbetaanalytics.com/api/Attendance/clockin",
+        "https://staffattendanceapi.azurewebsites.net/api/Attendance/clockin",
         {
           identity,
           latitude,
@@ -78,7 +78,7 @@ export const clockout = (identity) => async (dispatch) => {
   });
   try {
     const { data } = await Axios.post(
-      "https://vmsapi.lotusbetaanalytics.com/api/Attendance/clockout",
+      "https://staffattendanceapi.azurewebsites.net/api/Attendance/clockout",
       {
         identity,
       }
